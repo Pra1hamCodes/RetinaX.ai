@@ -1,0 +1,17 @@
+.venv/
+**/.venv/
+**/.venv-*/
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/dist/
+**/build/
+**/coverage/
+**/.DS_Store
+**/Thumbs.db
+retinax-ai/backend/.venv-standalone/

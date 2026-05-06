@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RETINA_DX | DETECTION SUITE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdada",
+                    "surface-container": "#1e1f26",
+                    "on-error": "#690005",
+                    "on-primary-fixed": "#40000c",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "on-background": "#e3e1ec",
+                    "primary-fixed-dim": "#ffb3b6",
+                    "outline": "#ac8889",
+                    "error-container": "#93000a",
+                    "on-tertiary": "#00382d",
+                    "on-secondary-fixed-variant": "#474646",
+                    "inverse-primary": "#be0037",
+                    "tertiary-fixed-dim": "#74d8bd",
+                    "surface-container-high": "#292931",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-surface": "#e3e1ec",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1b22",
+                    "inverse-on-surface": "#2f3038",
+                    "outline-variant": "#5c3f40",
+                    "surface-container-highest": "#33343c",
+                    "background": "#12131a",
+                    "surface": "#12131a",
+                    "on-secondary-container": "#bab8b7",
+                    "primary": "#ffb3b6",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#920028",
+                    "on-primary": "#68001a",
+                    "primary-container": "#e11d48",
+                    "surface-dim": "#12131a",
+                    "tertiary-fixed": "#90f5d9",
+                    "on-secondary": "#313030",
+                    "on-surface-variant": "#e5bdbe",
+                    "surface-variant": "#33343c",
+                    "surface-tint": "#ffb3b6",
+                    "tertiary-container": "#00836c",
+                    "surface-container-lowest": "#0d0e15",
+                    "inverse-surface": "#e3e1ec",
+                    "surface-bright": "#383941",
+                    "tertiary": "#74d8bd",
+                    "on-tertiary-fixed-variant": "#005142",
+                    "secondary-container": "#4a4949",
+                    "secondary": "#c9c6c5",
+                    "on-tertiary-container": "#eefff7",
+                    "on-tertiary-fixed": "#002019",
+                    "on-primary-container": "#fffaf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "margin": "32px",
+                    "unit": "4px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "gutter": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-mono": ["Space Grotesk"],
+                    "h3": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h1": ["Inter"],
+                    "h2": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-mono": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(39, 39, 42, 0.5);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .clinical-glow {
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.2);
+        }
+        .scanning-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e11d48, transparent);
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            animation: scan 3s infinite linear;
+        }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 h-20 bg-black/90 backdrop-blur-xl border-b border-zinc-800/50 shadow-[0_4_20px_rgba(225,29,72,0.15)]">
+<div class="flex items-center gap-6">
+<span class="text-rose-600 font-black tracking-tighter text-2xl">RETINA_DX</span>
+<nav class="hidden md:flex items-center gap-8 ml-12">
+<a class="text-rose-500 font-bold border-b-2 border-rose-500 pb-1 font-inter tracking-tight uppercase" href="#">DIAGNOSTICS</a>
+<a class="text-zinc-400 hover:text-zinc-100 font-inter tracking-tight uppercase transition-all duration-300" href="#">PATIENTS</a>
+<a class="text-zinc-400 hover:text-zinc-100 font-inter tracking-tight uppercase transition-all duration-300" href="#">SYSTEM_LOGS</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 font-inter tracking-tight uppercase font-semibold hover:bg-rose-600/10 hover:text-rose-400 transition-all duration-300 active:scale-95 cursor-pointer">START NOW</button>
+<div class="w-10 h-10 rounded-full border border-zinc-700 bg-zinc-900 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional medical headshot of a physician in a clinical setting with soft, professional lighting. The doctor is wearing a clean white lab coat and a stethoscope, looking directly at the camera with a confident and reassuring expression. The background is a slightly blurred high-tech medical facility with clinical red and deep black accents to match the UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLEOI25ndqGb0w8KNKtrSoriDKQU2-zYg9It71q7FUPpr85weuwIQbMX5eO7q-RzWLcE0KgvwTOGoFJAyPtMUVJxAR4XYOi0kKG3Qg91HmylLJicKCdVRtVWqoBvxpw_Sc9vfsTirW0vUE5v8061xFZjUDk7pYptS1vlYoUhvhgT-wAyelVKwQjyevON2GaN9zQ2jrSKWtE4YN4JRKqHbOK_SmW6dvV69r-V9YzB3e1nT5JGn88R4ifgBhBXFkv9ejHRt2d3wyXcI"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-80px)] w-64 bg-[#111111]/95 backdrop-blur-lg border-r border-zinc-800 flex flex-col z-40 hidden md:flex">
+<div class="py-8 px-6 text-rose-600 font-mono text-sm tracking-widest uppercase">SYSTEM_MENU</div>
+<nav class="flex-1">
+<div class="text-zinc-500 py-3 px-6 hover:bg-zinc-800/50 transition-colors flex items-center gap-4 font-mono text-sm tracking-widest cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span> DASHBOARD
+            </div>
+<div class="text-zinc-500 py-3 px-6 hover:bg-zinc-800/50 transition-colors flex items-center gap-4 font-mono text-sm tracking-widest cursor-pointer">
+<span class="material-symbols-outlined">group</span> PATIENTS
+            </div>
+<div class="bg-rose-600/20 text-rose-500 border-l-4 border-rose-600 py-3 px-6 flex items-center gap-4 font-mono text-sm tracking-widest cursor-pointer">
+<span class="material-symbols-outlined">biotech</span> DIAGNOSTICS
+            </div>
+<div class="text-zinc-500 py-3 px-6 hover:bg-zinc-800/50 transition-colors flex items-center gap-4 font-mono text-sm tracking-widest cursor-pointer">
+<span class="material-symbols-outlined">inventory_2</span> ARCHIVE
+            </div>
+</nav>
+<div class="p-6 border-t border-zinc-800">
+<div class="bg-zinc-900 p-4 rounded border border-zinc-800">
+<div class="text-[10px] text-zinc-500 uppercase tracking-widest mb-2">SYSTEM STATUS</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></div>
+<span class="text-xs text-zinc-300 font-mono">NOMINAL</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 mt-20 p-8 min-h-[calc(100vh-80px)] bg-black">
+<div class="max-w-7xl mx-auto">
+<header class="mb-12">
+<h1 class="font-h1 text-h1 text-on-surface mb-2 tracking-tighter">DETECTION_SUITE</h1>
+<p class="text-zinc-500 font-mono tracking-widest text-sm uppercase">Secure High-Precision Retinal Analysis Node v4.0.2</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main Upload & Scan Area -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="glass-panel p-1 border border-zinc-800 rounded-lg relative overflow-hidden group">
+<div class="aspect-video bg-black/40 rounded flex flex-col items-center justify-center border-2 border-dashed border-zinc-700 hover:border-rose-600/50 transition-all duration-500 relative cursor-pointer">
+<!-- Background Image simulation for context -->
+<img class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A highly detailed close-up of a human retina scan displayed on a professional diagnostic monitor. The image features complex networks of blood vessels and anatomical details of the eye, rendered with a clinical, high-contrast aesthetic. The color palette is dominated by deep obsidian blacks, clinical charcoal grays, and intense points of luminescent clinical red, reflecting a sophisticated medical noir atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ym7tD1-wFEjX3Pgu0QYAXZjIjv3qDj1r_GWtus1onLX4QawjBL9rgjuHhuZ8PxicV5_lPt4Aek9Q7We5tqrhVKVFKlIfJDdEytC0XYC4KYox0bY8T73APxCwaMVeiA1n7gkWo2jwiUZlKUHjPqGl_A8Q3OwCKW_Ia1O-9bLwNZUy5Mq_ivUB9Gr-ZSFF8p8tWoDGfoDu-3OCckRb6TZCBeSOFezptfbI7UC7cYeBx6dWB0P5sl5FLGQtJGZ6_o8IPM5XgBAPHXM"/>
+<div class="z-10 text-center px-6">
+<span class="material-symbols-outlined text-rose-600 text-6xl mb-4" style="font-variation-settings: 'FILL' 0;">cloud_upload</span>
+<h3 class="font-h3 text-h3 text-white mb-2 uppercase tracking-tight">INITIALIZE_SCAN</h3>
+<p class="text-zinc-400 font-mono text-sm tracking-widest max-w-md mx-auto">DRAG AND DROP HIGH-RESOLUTION DICOM OR TIFF IMAGERY TO COMMENCE DIAGNOSTIC SEQUENCING</p>
+</div>
+<!-- Scanning Animation Overlay -->
+<div class="scanning-line z-20"></div>
+</div>
+</div>
+<!-- Severity Levels Indicator -->
+<div class="grid grid-cols-5 gap-4">
+<div class="glass-panel p-4 text-center border-b-2 border-white/20">
+<div class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase mb-1">LEVEL 0</div>
+<div class="font-bold text-sm text-white">NORMAL</div>
+</div>
+<div class="glass-panel p-4 text-center border-b-2 border-rose-900/30">
+<div class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase mb-1">LEVEL 1</div>
+<div class="font-bold text-sm text-zinc-300">MILD</div>
+</div>
+<div class="glass-panel p-4 text-center border-b-2 border-rose-800/50">
+<div class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase mb-1">LEVEL 2</div>
+<div class="font-bold text-sm text-zinc-200">MODERATE</div>
+</div>
+<div class="glass-panel p-4 text-center border-b-2 border-rose-700/80">
+<div class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase mb-1">LEVEL 3</div>
+<div class="font-bold text-sm text-rose-300">SEVERE</div>
+</div>
+<div class="glass-panel p-4 text-center border-b-2 border-rose-600 clinical-glow">
+<div class="text-[10px] text-rose-600 font-mono tracking-widest uppercase mb-1">LEVEL 4</div>
+<div class="font-bold text-sm text-rose-500">PROLIFERATIVE</div>
+</div>
+</div>
+</div>
+<!-- Diagnostics Sidebar -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Accuracy Radar Simulation -->
+<div class="glass-panel p-6 rounded-lg border border-zinc-800">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-mono text-xs tracking-widest uppercase text-rose-600">ACCURACY_RADAR</h4>
+<span class="material-symbols-outlined text-rose-600 text-sm">sensors</span>
+</div>
+<div class="aspect-square relative flex items-center justify-center">
+<!-- Circular Radar Visuals -->
+<div class="absolute inset-0 rounded-full border border-zinc-800 border-dashed"></div>
+<div class="absolute inset-4 rounded-full border border-zinc-800"></div>
+<div class="absolute inset-12 rounded-full border border-zinc-800 border-dashed"></div>
+<div class="absolute inset-0 bg-gradient-to-tr from-rose-600/0 via-rose-600/5 to-rose-600/10 rounded-full animate-spin" style="animation-duration: 4s;"></div>
+<div class="text-center z-10">
+<div class="text-5xl font-black text-white tracking-tighter">98.4<span class="text-rose-600 text-xl">%</span></div>
+<div class="text-[10px] text-zinc-500 font-mono tracking-widest mt-2">CONFIDENCE SCORE</div>
+</div>
+</div>
+</div>
+<!-- Severity Results Panel -->
+<div class="glass-panel p-6 rounded-lg border border-zinc-800">
+<h4 class="font-mono text-xs tracking-widest uppercase text-zinc-500 mb-6">SEVERITY_ANALYSIS</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-mono text-zinc-300 uppercase">HEMORRHAGES</span>
+<span class="text-xs font-mono text-rose-500 uppercase">CRITICAL_DETECTION</span>
+</div>
+<div class="h-1 bg-black w-full rounded-full overflow-hidden">
+<div class="h-full bg-rose-600 shadow-[0_0_10px_#e11d48]" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-mono text-zinc-300 uppercase">EXUDATES</span>
+<span class="text-xs font-mono text-zinc-500 uppercase">TRACE_DETECTED</span>
+</div>
+<div class="h-1 bg-black w-full rounded-full overflow-hidden">
+<div class="h-full bg-zinc-700" style="width: 14%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-mono text-zinc-300 uppercase">MICROANEURYSMS</span>
+<span class="text-xs font-mono text-rose-300 uppercase">HIGH_CONCENTRATION</span>
+</div>
+<div class="h-1 bg-black w-full rounded-full overflow-hidden">
+<div class="h-full bg-rose-400" style="width: 76%"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 border border-zinc-800 py-3 text-xs font-mono tracking-widest uppercase hover:bg-zinc-800 transition-colors">GENERATE_FULL_REPORT</button>
+</div>
+</div>
+<!-- Patient History Quick View -->
+<div class="col-span-12">
+<div class="glass-panel p-6 rounded-lg border border-zinc-800">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-mono text-xs tracking-widest uppercase text-zinc-400">ACTIVE_PATIENT_QUEUE</h4>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-zinc-600 cursor-pointer hover:text-zinc-300">filter_list</span>
+<span class="material-symbols-outlined text-zinc-600 cursor-pointer hover:text-zinc-300">search</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="border-b border-zinc-800 text-left">
+<th class="pb-4 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">ID_REF</th>
+<th class="pb-4 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">PATIENT_NAME</th>
+<th class="pb-4 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">LAST_SCAN</th>
+<th class="pb-4 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">SEVERITY</th>
+<th class="pb-4 font-mono text-[10px] text-zinc-500 uppercase tracking-widest">STATUS</th>
+</tr>
+</thead>
+<tbody class="text-xs">
+<tr class="border-b border-zinc-900/50 hover:bg-zinc-800/20 transition-colors cursor-pointer">
+<td class="py-4 font-mono text-zinc-400">#RX-9920</td>
+<td class="py-4 text-zinc-100 font-semibold uppercase">ELARA_VANCE</td>
+<td class="py-4 font-mono text-zinc-500">2024-10-12 08:42</td>
+<td class="py-4"><span class="bg-rose-600/10 text-rose-500 px-2 py-1 rounded text-[10px] font-mono border border-rose-600/20">PROLIFERATIVE</span></td>
+<td class="py-4 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-rose-600"></span> URGENT</td>
+</tr>
+<tr class="border-b border-zinc-900/50 hover:bg-zinc-800/20 transition-colors cursor-pointer">
+<td class="py-4 font-mono text-zinc-400">#RX-8144</td>
+<td class="py-4 text-zinc-100 font-semibold uppercase">JULIAN_KANE</td>
+<td class="py-4 font-mono text-zinc-500">2024-10-12 09:15</td>
+<td class="py-4"><span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded text-[10px] font-mono border border-zinc-700">NORMAL</span></td>
+<td class="py-4 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span> STABLE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-6 px-8 flex justify-between items-center border-t border-zinc-900 bg-black">
+<div class="font-inter text-[10px] uppercase tracking-widest text-zinc-500">
+            © 2024 RETINA_DX CORE. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-6">
+<a class="material-symbols-outlined text-zinc-600 hover:text-rose-500 transition-colors text-lg" href="#">link</a>
+<a class="material-symbols-outlined text-zinc-600 hover:text-rose-500 transition-colors text-lg" href="#">terminal</a>
+<a class="material-symbols-outlined text-zinc-600 hover:text-rose-500 transition-colors text-lg" href="#">code</a>
+</div>
+</footer>
+<!-- FAB (Suppressed based on context rules, but present for dashboard relevance as per instructions) -->
+<button class="fixed bottom-12 right-12 w-16 h-16 bg-rose-600 text-white rounded-full flex items-center justify-center clinical-glow hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>

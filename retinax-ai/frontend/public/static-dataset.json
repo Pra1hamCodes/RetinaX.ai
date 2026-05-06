@@ -1,0 +1,15 @@
+{
+  "_demo": false,
+  "_note": "Real counts computed from dataset/colored_images/ on disk.",
+  "total": 3662,
+  "classes": [
+    { "label": "No DR",            "count": 1805, "percentage": 49.29 },
+    { "label": "Mild",             "count": 370,  "percentage": 10.10 },
+    { "label": "Moderate",         "count": 999,  "percentage": 27.28 },
+    { "label": "Severe",           "count": 193,  "percentage": 5.27 },
+    { "label": "Proliferative DR", "count": 295,  "percentage": 8.06 }
+  ],
+  "source": "APTOS 2019 Blindness Detection (Kaggle)",
+  "image_size": 224,
+  "split_ratio": { "train": 0.70, "val": 0.15, "test": 0.15 }
+}

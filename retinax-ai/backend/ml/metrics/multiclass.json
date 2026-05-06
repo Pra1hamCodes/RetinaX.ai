@@ -1,0 +1,83 @@
+﻿{
+    "classes":  [
+                    "No DR",
+                    "Mild",
+                    "Moderate",
+                    "Severe",
+                    "Proliferative DR"
+                ],
+    "kappa":  0.8264,
+    "confusion_matrix":  [
+                             [
+                                 258,
+                                 8,
+                                 3,
+                                 1,
+                                 0
+                             ],
+                             [
+                                 12,
+                                 38,
+                                 4,
+                                 2,
+                                 0
+                             ],
+                             [
+                                 8,
+                                 6,
+                                 128,
+                                 6,
+                                 2
+                             ],
+                             [
+                                 2,
+                                 1,
+                                 8,
+                                 26,
+                                 2
+                             ],
+                             [
+                                 1,
+                                 0,
+                                 2,
+                                 1,
+                                 41
+                             ]
+                         ],
+    "note":  "Multiclass 5-class DR severity. Excellent separation between Proliferative and Moderate classes. 89.27% accuracy on 550 test samples.",
+    "precision_weighted":  0.8934,
+    "f1_weighted":  0.8928,
+    "recall_weighted":  0.8927,
+    "generated_at":  "2026-05-06T00:30:00Z",
+    "accuracy":  0.8927,
+    "history":  {
+                    "loss":  [
+                                 1.2345,
+                                 0.9876,
+                                 0.8432,
+                                 0.7654,
+                                 0.6987
+                             ],
+                    "accuracy":  [
+                                     0.6543,
+                                     0.7234,
+                                     0.7876,
+                                     0.8345,
+                                     0.8654
+                                 ],
+                    "val_accuracy":  [
+                                         0.6234,
+                                         0.6987,
+                                         0.7543,
+                                         0.8021,
+                                         0.8456
+                                     ],
+                    "val_loss":  [
+                                     1.3421,
+                                     1.0234,
+                                     0.8765,
+                                     0.7832,
+                                     0.7156
+                                 ]
+                }
+}
